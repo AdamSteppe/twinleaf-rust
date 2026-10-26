@@ -335,9 +335,7 @@ impl StyleContext {
         }
         if self.is_selected {
             s = s.add_modifier(Modifier::BOLD);
-            if !self.in_plot_mode {
-                s = s.add_modifier(Modifier::RAPID_BLINK);
-            }
+            s = s.reversed();
         }
         s
     }
@@ -993,8 +991,8 @@ fn get_action(ev: Event, app: &mut MonitorState) -> Option<Action> {
                 KeyCode::Char('q') => Some(Action::Quit),
                 KeyCode::Char('c') if k.modifiers == KeyModifiers::CONTROL => Some(Action::Quit),
                 KeyCode::Esc => Some(Action::ClosePlot),
-                KeyCode::Up => Some(Action::NavUp),
-                KeyCode::Down => Some(Action::NavDown),
+                KeyCode::Up | KeyCode::Char('k') => Some(Action::NavUp),
+                KeyCode::Down | KeyCode::Char('j') => Some(Action::NavDown),
                 KeyCode::Left => Some(Action::NavLeft),
                 KeyCode::Right => Some(Action::NavRight),
                 KeyCode::BackTab => Some(Action::NavTabPrev),
