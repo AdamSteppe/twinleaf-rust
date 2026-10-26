@@ -1626,7 +1626,6 @@ fn render_graphics_panel(f: &mut Frame, app: &MonitorState, area: Rect) {
                 };
 
                 let dataset = Dataset::default()
-                    .name(desc.as_str())
                     .marker(symbols::Marker::Braille)
                     .style(Style::default().fg(Color::Green))
                     .graph_type(GraphType::Line)
