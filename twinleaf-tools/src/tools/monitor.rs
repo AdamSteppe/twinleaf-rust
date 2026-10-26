@@ -1610,7 +1610,10 @@ fn render_graphics_panel(f: &mut Frame, app: &MonitorState, area: Rect) {
                 "{} — {} ({:.1}s)",
                 route, desc, app.view.plot_window_seconds
             );
-            let block = Block::default().title(title).borders(Borders::ALL);
+            let block = Block::default()
+                .title(title)
+                .borders(Borders::ALL)
+                .border_type(ratatui::widgets::BorderType::Rounded);
 
             if let Some((data, _, _)) = app.get_plot_data() {
                 let min_t = data.first().map(|(t, _)| *t).unwrap_or(0.0);
